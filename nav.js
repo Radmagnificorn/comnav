@@ -162,8 +162,14 @@
         displayControl.nextPanel();
     }, false);
 
-    doc.addEventListener("keypress", function (e) {
-        alert("hey " + e);
+    doc.addEventListener("keyup", function (e) {
+        let keycode = e.keyCode;
+        if (keycode === 37) {
+            displayControl.prevPanel();
+        }
+        if (keycode === 39) {
+            displayControl.nextPanel();
+        }
     }, false)
 
 
