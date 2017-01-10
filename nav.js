@@ -39,6 +39,7 @@
 
         initPages(){
             return  [
+                'panel1.png',
                 'page1.png',
                 'page2.mp4',
                 'page3.mp4',
@@ -143,8 +144,8 @@
     let dispProps = {
         loopVideo: true,
         autoplayVideo: true,
-        height: '480px',
-        width: '640px'
+        height: '100%',
+        width: '100%'
     }
 
     let displayControl = new DisplayControl(new PageManager('./pages/'), comicPanel, dispProps);
@@ -170,7 +171,7 @@
         if (keycode === 39) {
             displayControl.nextPanel();
         }
-    }, false)
+    }, false);
 
 
     
