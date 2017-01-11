@@ -1,6 +1,6 @@
-"use strict";
-(function (doc) {
-
+import React from 'react';
+(function (doc, React) {
+    "use strict";
     class PageManager {
         constructor(pageDir) {
             this.pageDir = pageDir ? pageDir : '';
@@ -100,7 +100,7 @@
 
         renderPage() {
             let pageExt = this.pageManager.getPageExtension();
-            var display;
+            let display;
             switch (pageExt) {
                 case "png":
                     display = this.createImageDisplay(this.pageManager.getPageUrl());
@@ -137,16 +137,16 @@
     }
 
     
-    var comicPanel = doc.getElementById("comicPanel");
-    var prevButton = doc.getElementById("prevButton");
-    var nextButton = doc.getElementById("nextButton");
+    let comicPanel = doc.getElementById("comicPanel");
+    let prevButton = doc.getElementById("prevButton");
+    let nextButton = doc.getElementById("nextButton");
 
     let dispProps = {
         loopVideo: true,
         autoplayVideo: true,
         height: '100%',
         width: '100%'
-    }
+    };
 
     let displayControl = new DisplayControl(new PageManager('./pages/'), comicPanel, dispProps);
     
@@ -175,4 +175,4 @@
 
 
     
-})(document);
+})(document, React);
