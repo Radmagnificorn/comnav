@@ -54,6 +54,10 @@
 
 	var _DisplayControl2 = _interopRequireDefault(_DisplayControl);
 
+	var _Utils = __webpack_require__(2);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	(function (document, PageManager, DisplayControl) {
@@ -69,8 +73,10 @@
 	        width: '100%'
 	    };
 
+	    var startPage = _Utils2.default.getPageFromUrl(window.location.href) || { chapter: 'chapter1', page: 0 };
+
 	    var displayControl = new DisplayControl(comicPanel, dispProps);
-	    var pageManager = new PageManager('./pages', 'chapter1', 0);
+	    var pageManager = new PageManager('./pages', startPage.chapter, startPage.page);
 
 	    pageManager.addRenderer(displayControl);
 
@@ -261,6 +267,21 @@
 
 	                request.send();
 	            });
+	        }
+	    }, {
+	        key: 'getPageFromUrl',
+	        value: function getPageFromUrl(url) {
+	            var page = null;
+	            var locString = url.split('#')[1];
+	            if (locString) {
+	                var parsedLoc = locString.split('~');
+	                page = {
+	                    chapter: parsedLoc[0],
+	                    page: parsedLoc[1]
+	                };
+	            }
+
+	            return page;
 	        }
 	    }]);
 

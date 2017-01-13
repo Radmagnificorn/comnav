@@ -22,4 +22,18 @@ export default class Utils {
         });
     }
 
+    static getPageFromUrl(url) {
+        let page = null;
+        let locString = url.split('#')[1];
+        if (locString) {
+            let parsedLoc = locString.split('~');
+            page = {
+                chapter: parsedLoc[0],
+                page: parsedLoc[1]
+            }
+        }
+
+        return page;
+    }
+
 }

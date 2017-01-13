@@ -1,7 +1,8 @@
 "use strict";
 
 import PageManager from './PageManager.js';
-import DisplayControl from './DisplayControl.js'
+import DisplayControl from './DisplayControl.js';
+import Utils from './Utils.js';
 
 (function (document, PageManager, DisplayControl) {
 
@@ -16,8 +17,10 @@ import DisplayControl from './DisplayControl.js'
         width: '100%'
     };
 
+    let startPage = Utils.getPageFromUrl(window.location.href) || {chapter: 'chapter1', page: 0};
+
     let displayControl = new DisplayControl(comicPanel, dispProps);
-    let pageManager = new PageManager('./pages', 'chapter1', 0);
+    let pageManager = new PageManager('./pages', startPage.chapter, startPage.page);
 
     pageManager.addRenderer(displayControl);
 
