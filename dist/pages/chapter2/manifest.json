@@ -1,0 +1,9 @@
+{
+    "prevChapter": "chapter1",
+    "nextChapter": "chapter3",
+    "pages": [
+        "page4.png",
+        "page5.png",
+        "page6.png"
+    ]
+}

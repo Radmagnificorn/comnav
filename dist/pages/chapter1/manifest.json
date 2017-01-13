@@ -1,0 +1,9 @@
+{
+    "prevChapter": null,
+    "nextChapter": "chapter2",
+    "pages": [
+        "page1.png",
+        "page2.mp4",
+        "page3.mp4"
+    ]
+}

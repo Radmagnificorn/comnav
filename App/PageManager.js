@@ -1,13 +1,15 @@
+import ChapterLoader from './ChapterLoader.js';
+
 export default class PageManager {
-    constructor(pageDir) {
-        this.pageDir = pageDir ? pageDir : '';
+    constructor(baseDir, chapterUrl) {
+        this.baseDir = baseDir;
+        this.pageDir = chapterUrl ? chapterUrl : '';
         this.currentPage = 0;
-        this.pages = this.initPages();
+        this.loadChapter(this.pageDir);
     }
 
     addRenderer(displayRenderer) {
         this.renderer = displayRenderer;
-        this.renderer.render(this.getPageUrl());
     }
 
     render() {
@@ -19,32 +21,44 @@ export default class PageManager {
     next() {
         if (this.currentPage < this.pages.length-1) {
             this.currentPage++;
+            this.render();
+        } else {
+            if (this.nextChapter) {
+                this.loadChapter(this.nextChapter);
+            }
         }
-        this.render();
         return this.getPageUrl();
     }
 
     previous() {
         if (this.currentPage > 0) {
             this.currentPage--;
+            this.render();
+        } else {
+            if (this.prevChapter) {
+                this.loadChapter(this.prevChapter);
+            }
         }
-        this.render();
         return this.getPageUrl();
     }
 
-    getPageUrl(page) {
-        return this.pageDir + this.pages[page ? page : this.currentPage];
+    loadChapter(chapterUrl) {
+        ChapterLoader.loadChapterManifest(this.baseDir + "/" + chapterUrl).then((manifest) => {
+            this.pageDir = chapterUrl;
+            this.nextChapter = manifest.nextChapter;
+            this.prevChapter = manifest.prevChapter;
+            this.pages = manifest.pages;
+            this.currentPage = 0;
+            this.render();
+        });
     }
 
-    initPages(){
-        return  [
-            'panel1.png',
-            'page1.png',
-            'page2.mp4',
-            'page3.mp4',
-            'page4.png',
-            'page5.png',
-            'page6.png'
-        ]
+    getChapterPath() {
+        return this.baseDir + "/" + this.pageDir ;
     }
+
+    getPageUrl() {
+        return this.getChapterPath() + "/" + this.pages[this.currentPage];
+    }
+
 }

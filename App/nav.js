@@ -16,7 +16,7 @@ let dispProps = {
 };
 
 let displayControl = new DisplayControl(comicPanel, dispProps);
-let pageManager = new PageManager('./pages/');
+let pageManager = new PageManager('./pages', 'chapter1');
 pageManager.addRenderer(displayControl);
 
 

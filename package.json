@@ -4,7 +4,8 @@
   "description": "",
   "main": "nav.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "run": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-preset-env": "^1.1.8",
-    "webpack": "^1.14.0"
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
     "react": "^15.4.2",
