@@ -1,11 +1,11 @@
-import ChapterLoader from './ChapterLoader.js';
+import Utils from './Utils.js';
 
 export default class PageManager {
-    constructor(baseDir, chapterUrl) {
+    constructor(baseDir, chapterUrl, pageNo) {
         this.baseDir = baseDir;
         this.pageDir = chapterUrl ? chapterUrl : '';
-        this.currentPage = 0;
-        this.loadChapter(this.pageDir);
+        this.currentPage = pageNo ? pageNo : 0;
+        this.loadChapter(this.pageDir, pageNo);
     }
 
     addRenderer(displayRenderer) {
@@ -16,6 +16,8 @@ export default class PageManager {
         if (this.renderer) {
             this.renderer.render(this.getPageUrl());
         }
+
+        this.pushCurrentState();
     }
 
     next() {
@@ -24,7 +26,7 @@ export default class PageManager {
             this.render();
         } else {
             if (this.nextChapter) {
-                this.loadChapter(this.nextChapter);
+                this.loadChapter(this.nextChapter, 'first');
             }
         }
         return this.getPageUrl();
@@ -36,19 +38,45 @@ export default class PageManager {
             this.render();
         } else {
             if (this.prevChapter) {
-                this.loadChapter(this.prevChapter);
+                this.loadChapter(this.prevChapter, 'last');
             }
         }
         return this.getPageUrl();
     }
 
-    loadChapter(chapterUrl) {
-        ChapterLoader.loadChapterManifest(this.baseDir + "/" + chapterUrl).then((manifest) => {
+    pushCurrentState() {
+        history.pushState(
+            {
+                chapter: this.pageDir,
+                page: this.currentPage
+            },
+            null,
+            `#${this.pageDir}~${this.currentPage}`
+        );
+    }
+
+    loadChapter(chapterUrl, page) {
+        Utils.loadChapterManifest(this.baseDir + "/" + chapterUrl).then((manifest) => {
             this.pageDir = chapterUrl;
             this.nextChapter = manifest.nextChapter;
             this.prevChapter = manifest.prevChapter;
             this.pages = manifest.pages;
-            this.currentPage = 0;
+
+            if (Number.isInteger(page)) {
+                this.currentPage = page;
+            } else {
+                switch (page) {
+                    case "first":
+                        this.currentPage = 0;
+                        break;
+                    case "last":
+                        this.currentPage = manifest.pages.length-1;
+                        break;
+                    default:
+                        this.currentPage = 0;
+                }
+            }
+
             this.render();
         });
     }

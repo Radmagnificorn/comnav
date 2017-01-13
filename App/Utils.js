@@ -1,4 +1,4 @@
-export default class ChapterLoader {
+export default class Utils {
     constructor() {}
 
     static loadChapterManifest(url) {
@@ -21,4 +21,5 @@ export default class ChapterLoader {
             request.send();
         });
     }
+
 }
