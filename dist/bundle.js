@@ -60,7 +60,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(function (document, PageManager, DisplayControl) {
+	(function (document, PageManager, DisplayControl, window) {
 
 	    var comicPanel = document.getElementById("comicPanel");
 	    var prevButton = document.getElementById("prevButton");
@@ -101,7 +101,7 @@
 	            pageManager.next();
 	        }
 	    }, false);
-	})(document, _PageManager2.default, _DisplayControl2.default);
+	})(document, _PageManager2.default, _DisplayControl2.default, window);
 
 /***/ },
 /* 1 */
@@ -192,8 +192,9 @@
 	                _this.prevChapter = manifest.prevChapter;
 	                _this.pages = manifest.pages;
 
-	                if (Number.isInteger(page)) {
-	                    _this.currentPage = page;
+	                var pageInt = parseInt(page);
+	                if (pageInt) {
+	                    _this.currentPage = pageInt;
 	                } else {
 	                    switch (page) {
 	                        case "first":

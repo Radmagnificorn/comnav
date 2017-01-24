@@ -4,7 +4,7 @@ import PageManager from './PageManager.js';
 import DisplayControl from './DisplayControl.js';
 import Utils from './Utils.js';
 
-(function (document, PageManager, DisplayControl) {
+(function (document, PageManager, DisplayControl, window) {
 
     let comicPanel = document.getElementById("comicPanel");
     let prevButton = document.getElementById("prevButton");
@@ -45,4 +45,4 @@ import Utils from './Utils.js';
             pageManager.next();
         }
     }, false);
-})(document, PageManager, DisplayControl);
+})(document, PageManager, DisplayControl, window);

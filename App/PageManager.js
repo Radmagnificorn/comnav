@@ -62,8 +62,9 @@ export default class PageManager {
             this.prevChapter = manifest.prevChapter;
             this.pages = manifest.pages;
 
-            if (Number.isInteger(page)) {
-                this.currentPage = page;
+            let pageInt = parseInt(page);
+            if (pageInt) {
+                this.currentPage = pageInt;
             } else {
                 switch (page) {
                     case "first":
