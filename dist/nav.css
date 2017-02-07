@@ -1,5 +1,5 @@
 body {
-    background-color: #000000;
+    background-color: #202020;
 }
 
 #comicPanel {
@@ -10,15 +10,36 @@ body {
 }
 
 #navPanel {
-    width: 250px;
+    width: 960px;
     margin: 0 auto;
+    position: relative;
+    margin-bottom: 150px;
 }
 
-#navPanel input {
-    width: 30px;
-}
 
 #navPanel button {
-    width: 100px;
+    width: 50%;
+    height: 100px;
+    position: absolute;
+    top: 0;
 }
 
+#prevButton {
+    left: 0;
+}
+
+#nextButton {
+    right: 0;
+}
+
+.notice {
+    color: #FFFFFF;
+    text-align: center;
+}
+
+img, video {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
