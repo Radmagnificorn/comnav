@@ -8,12 +8,14 @@ export default class DisplayControl {
     createImageDisplay(path) {
         let props = this.properties;
         let imageDisplay = document.createElement('img');
+
         imageDisplay.style.display = 'block';
         imageDisplay.style.height = props.height;
         imageDisplay.style.width = props.width;
         imageDisplay.style.position = 'absolute';
         imageDisplay.style.top = '0';
         imageDisplay.style.left = '0';
+
         imageDisplay.src = path;
 
         let loadedPromise = new Promise(function (resolve) {

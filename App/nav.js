@@ -1,5 +1,7 @@
 "use strict";
 
+import './nav.less';
+
 import PageManager from './PageManager.js';
 import DisplayControl from './DisplayControl.js';
 import Utils from './Utils.js';
