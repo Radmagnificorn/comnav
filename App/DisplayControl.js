@@ -36,6 +36,7 @@ export default class DisplayControl {
         videoDisplay.style.left = '0';
         videoDisplay.loop = props.loopVideo ? props.loopVideo : true;
         videoDisplay.autoplay = props.autoplayVideo ? props.autoplayVideo : true;
+        videoDisplay.muted = true;
         videoDisplay.src = path;
 
         let loadedPromise = new Promise(function (resolve) {
