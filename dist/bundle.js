@@ -160,7 +160,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #202020;\n}\n#comicPanel {\n  height: 720px;\n  width: 960px;\n  background-color: #eeeeee;\n  margin: 0 auto;\n}\n#navPanel {\n  width: 960px;\n  margin: 0 auto;\n  position: relative;\n  margin-bottom: 150px;\n}\n#navPanel button {\n  width: 50%;\n  height: 100px;\n  position: absolute;\n  top: 0;\n}\n#prevButton {\n  left: 0;\n}\n#nextButton {\n  right: 0;\n}\n.notice {\n  color: #FFFFFF;\n  text-align: center;\n}\nimg,\nvideo {\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-crisp-edges;\n  image-rendering: pixelated;\n  image-rendering: crisp-edges;\n}\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #202020;\n  font-family: Verdana, \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n#comicPanel {\n  height: 720px;\n  width: 960px;\n  background-color: #eeeeee;\n  margin: 0 auto;\n}\n#navPanel {\n  width: 960px;\n  margin: 0 auto;\n  position: relative;\n  margin-bottom: 150px;\n}\n#navPanel button {\n  width: 50%;\n  height: 100px;\n  position: absolute;\n  top: 0;\n  font-weight: bold;\n  font-size: large;\n  color: #202020;\n}\n#prevButton {\n  left: 0;\n}\n#nextButton {\n  right: 0;\n}\n.notice {\n  color: #FFFFFF;\n  text-align: center;\n}\n#chapters {\n  margin: 0 auto;\n  color: #ffffff;\n  text-align: center;\n  width: 75%;\n  font-weight: bold;\n}\n#chapters a {\n  text-decoration: none;\n  color: #ffffff;\n}\n#chapters a :visited {\n  color: #ffffff;\n  text-decoration: none;\n}\n#chapters a :hover {\n  color: #eeeeee;\n}\nimg,\nvideo {\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-crisp-edges;\n  image-rendering: pixelated;\n  image-rendering: crisp-edges;\n}\n", ""]);
 
 	// exports
 
