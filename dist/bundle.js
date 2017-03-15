@@ -64,45 +64,65 @@
 
 	(function (document, PageManager, DisplayControl, window) {
 
-	    var comicPanel = document.getElementById("comicPanel");
-	    var prevButton = document.getElementById("prevButton");
-	    var nextButton = document.getElementById("nextButton");
+	    init();
 
-	    var dispProps = {
-	        loopVideo: true,
-	        autoplayVideo: true,
-	        height: '100%',
-	        width: '100%'
-	    };
+	    function init() {
 
-	    var startPage = _Utils2.default.getPageFromUrl(window.location.href) || { chapter: 'chapter1', page: 0 };
+	        var comicPanel = document.getElementById("comicPanel");
 
-	    var displayControl = new DisplayControl(comicPanel, dispProps);
-	    var pageManager = new PageManager('./pages', startPage.chapter, startPage.page);
+	        var dispProps = {
+	            loopVideo: true,
+	            autoplayVideo: true,
+	            height: '100%',
+	            width: '100%'
+	        };
 
-	    pageManager.addRenderer(displayControl);
+	        var startPage = _Utils2.default.getPageFromUrl(window.location.href) || { chapter: 'prolog', page: 0 };
 
-	    comicPanel.addEventListener("click", function () {
-	        pageManager.next();
-	    }, false);
+	        var displayControl = new DisplayControl(comicPanel, dispProps);
+	        var pageManager = new PageManager('./pages', startPage.chapter, startPage.page);
 
-	    prevButton.addEventListener("click", function () {
-	        pageManager.previous();
-	    }, false);
+	        pageManager.addRenderer(displayControl);
 
-	    nextButton.addEventListener("click", function () {
-	        pageManager.next();
-	    }, false);
-
-	    document.addEventListener("keyup", function (e) {
-	        var keycode = e.keyCode;
-	        if (keycode === 37) {
-	            pageManager.previous();
-	        }
-	        if (keycode === 39) {
+	        comicPanel.addEventListener("click", function () {
 	            pageManager.next();
+	        }, false);
+
+	        initNavigation(pageManager);
+	        initChapterLinks();
+	    }
+
+	    function initNavigation(pageManager) {
+	        var prevButton = document.getElementById("prevButton");
+	        var nextButton = document.getElementById("nextButton");
+
+	        prevButton.addEventListener("click", function () {
+	            pageManager.previous();
+	        }, false);
+
+	        nextButton.addEventListener("click", function () {
+	            pageManager.next();
+	        }, false);
+
+	        document.addEventListener("keyup", function (e) {
+	            var keycode = e.keyCode;
+	            if (keycode === 37) {
+	                pageManager.previous();
+	            }
+	            if (keycode === 39) {
+	                pageManager.next();
+	            }
+	        }, false);
+	    }
+
+	    function initChapterLinks() {
+	        var chapterLinks = document.getElementById("chapters").getElementsByTagName("A");
+	        for (var i = 0; i < chapterLinks.length; i++) {
+	            chapterLinks[i].addEventListener("click", function () {
+	                window.location.reload();
+	            });
 	        }
-	    }, false);
+	    }
 	})(document, _PageManager2.default, _DisplayControl2.default, window);
 
 /***/ },
@@ -700,13 +720,15 @@
 	            videoDisplay.style.left = '0';
 	            videoDisplay.loop = props.loopVideo ? props.loopVideo : true;
 	            videoDisplay.autoplay = props.autoplayVideo ? props.autoplayVideo : true;
-	            videoDisplay.src = path;
+	            videoDisplay.muted = true;
 
 	            var loadedPromise = new Promise(function (resolve) {
 	                videoDisplay.addEventListener("loadeddata", function () {
 	                    resolve();
 	                }, false);
 	            });
+
+	            videoDisplay.src = path;
 
 	            return { component: videoDisplay, loaded: loadedPromise };
 	        }

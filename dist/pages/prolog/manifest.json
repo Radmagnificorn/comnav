@@ -1,6 +1,6 @@
 {
-    "prevChapter": "chapter2",
-    "nextChapter": null,
+    "prevChapter": null,
+    "nextChapter": "chapter1",
     "pages": [
         "panel1.png",
         "panel2.png",

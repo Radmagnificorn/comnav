@@ -37,11 +37,12 @@ export default class DisplayControl {
         videoDisplay.loop = props.loopVideo ? props.loopVideo : true;
         videoDisplay.autoplay = props.autoplayVideo ? props.autoplayVideo : true;
         videoDisplay.muted = true;
-        videoDisplay.src = path;
 
         let loadedPromise = new Promise(function (resolve) {
             videoDisplay.addEventListener("loadeddata", function () {resolve();}, false);
         });
+
+        videoDisplay.src = path;
 
         return {component: videoDisplay, loaded: loadedPromise};
     }
